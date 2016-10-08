@@ -11,7 +11,11 @@ sum([], 0).
 sum([H|T],SUM) :- sum(T,S1), SUM is H+S1.
 
 % sister(SISTER, SIBLING) - exercise 16.2 from textbook
-
+% Sister could have only been:
+% sister(SISTER, SIBLING) :- sibling(SISTER, SIBLING), female(SISTER).
+% if the directions did not say to use the other structures.
+sister(SISTER, SIBLING) :- female(SISTER), female(SIBLING), parent(X, SIBLING), parent(X, SISTER), not(SISTER=SIBLING).
+sister(SISTER, SIBLING) :- female(SISTER), male(SIBLING), parent(X, SIBLING), parent(X, SISTER), not(SISTER=SIBLING).
 
 % max(LST, MAX) - exercise 16.3 from textbook
 max([H], H). % for a 1 element list
