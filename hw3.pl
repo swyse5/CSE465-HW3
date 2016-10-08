@@ -26,7 +26,12 @@ max([H|T], M) :- max(T,M), M>H.
 % partitionable(LST) - determine if list of numbers can be split into 2 lists that sum to the same value
 
 
+% uses zipcodes.pl to load in the information
 % getCommon(STATE1, STATE2, PLACE) - gets place names that are common to both states
-% place(X,Y) - gets place and state
-place(X,Y) :- location(_,X,Y,_,_,_).
+% place(PLACE,STATE) - gets place and state
+place(PLACE,STATE) :- location(_,PLACE,STATE,_,_,_).
 getCommon(STATE1, STATE2, PLACE) :- place(PLACE, STATE1), place(PLACE, STATE2), not(STATE1=STATE2).
+
+% uses zipcodes.pl to lad in the information
+% getStateInfo(PLACENAME, STATE, ZIPCODE)
+getStateInfo(PLACENAME, STATE, ZIP) :- location(ZIP, PLACENAME, STATE, _,_,_).
