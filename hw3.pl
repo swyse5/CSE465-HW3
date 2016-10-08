@@ -24,3 +24,8 @@ max([H|T], M) :- max(T,M), M>H.
 
 
 % partitionable(LST) - determine if list of numbers can be split into 2 lists that sum to the same value
+
+
+getCommon(STATE1, STATE2, PLACE) - gets place names that are common to both states
+place(X,Y) :- location(_,X,Y,_,_,_).
+getCommon(STATE1, STATE2, PLACE) :- place(PLACE, STATE1), place(PLACE, STATE2), not(STATE1=STATE2).
