@@ -38,37 +38,49 @@ getStateInfo(PLACENAME, STATE, ZIP) :- location(ZIP, PLACENAME, STATE, _,_,_).
 
 
 % Rules to parse English sentences
-singularNoun(sun).
-singularNoun(bus).
-singularNoun(deer).
-singularNoun(grass).
-singularNoun(party).
+singularNoun([sun]).
+singularNoun([bus]).
+singularNoun([deer]).
+singularNoun([grass]).
+singularNoun([party]).
 
-pluralNoun(suns).
-pluralNoun(buses).
-pluralNoun(deer).
-pluralNoun(grasses).
-pluralNoun(parties).
+pluralNoun([suns]).
+pluralNoun([buses]).
+pluralNoun([deer]).
+pluralNoun([grasses]).
+pluralNoun([parties]).
 
-article(a).
-article(and).
-article(the).
+article([a]).
+article([and]).
+article([the]).
 
-adverb(loudly).
-adverb(brightly).
+adverb([loudly]).
+adverb([brightly]).
 
-adjective(yellow).
-adjective(big).
-adjective(brown).
-adjective(green).
-adjective(party).
+adjective([yellow]).
+adjective([big]).
+adjective([brown]).
+adjective([green]).
+adjective([party]).
 
-pluralVerb(shine).
-pluralVerb(eat).
-pluralVerb(party).
-pluralVerb(continue).
+pluralVerb([shine]).
+pluralVerb([eat]).
+pluralVerb([party]).
+pluralVerb([continue]).
 
-singularVerb(shines).
-singularVerb(continues).
-singularVerb(parties).
-singularVerb(eats).
+singularVerb([shines]).
+singularVerb([continues]).
+singularVerb([parties]).
+singularVerb([eats]).
+
+
+nounPhrase(NP) :- singularNoun(NP).
+nounPhrase(NP) :- pluralNoun(NP).
+nounPhrase([ADJ|NP]) :- adjective([ADJ]), nounPhrase(NP).
+
+verbPhrase(VP) :- pluralVerb(VP).
+verbPhrase(VP) :- singularVerb(VP).
+verbPhrase([VERB|ADV]) :- verb([VERB]), adverb([ADV]).
+
+# properPhrase(NOUN,VERB) :- singularNoun(NOUN), singularVerb(VERB).
+# properPhrase(NOUN,VERB) :- pluralNoun(NOUN), pluralVerb(VERB).
