@@ -35,3 +35,40 @@ getCommon(STATE1, STATE2, PLACE) :- place(PLACE, STATE1), place(PLACE, STATE2), 
 % uses zipcodes.pl to lad in the information
 % getStateInfo(PLACENAME, STATE, ZIPCODE)
 getStateInfo(PLACENAME, STATE, ZIP) :- location(ZIP, PLACENAME, STATE, _,_,_).
+
+
+% Rules to parse English sentences
+singularNoun(sun).
+singularNoun(bus).
+singularNoun(deer).
+singularNoun(grass).
+singularNoun(party).
+
+pluralNoun(suns).
+pluralNoun(buses).
+pluralNoun(deer).
+pluralNoun(grasses).
+pluralNoun(parties).
+
+article(a).
+article(and).
+article(the).
+
+adverb(loudly).
+adverb(brightly).
+
+adjective(yellow).
+adjective(big).
+adjective(brown).
+adjective(green).
+adjective(party).
+
+pluralVerb(shine).
+pluralVerb(eat).
+pluralVerb(party).
+pluralVerb(continue).
+
+singularVerb(shines).
+singularVerb(continues).
+singularVerb(parties).
+singularVerb(eats).
