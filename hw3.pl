@@ -24,7 +24,7 @@ max([H|T], M) :- max(T,M), M>H.
 
 
 % partitionable(LST) - determine if list of numbers can be split into 2 lists that sum to the same value
-
+partitionable(LST) :- append(X,Y,LST), sum(X,P), sum(Y,P), !.
 
 % uses zipcodes.pl to load in the information
 % getCommon(STATE1, STATE2, PLACE) - gets place names that are common to both states
@@ -82,5 +82,5 @@ verbPhrase(VP) :- pluralVerb(VP).
 verbPhrase(VP) :- singularVerb(VP).
 verbPhrase([VERB|ADV]) :- verb([VERB]), adverb([ADV]).
 
-# properPhrase(NOUN,VERB) :- singularNoun(NOUN), singularVerb(VERB).
-# properPhrase(NOUN,VERB) :- pluralNoun(NOUN), pluralVerb(VERB).
+properPhrase(NOUN,VERB) :- singularNoun(NOUN), singularVerb(VERB).
+properPhrase(NOUN,VERB) :- pluralNoun(NOUN), pluralVerb(VERB).
