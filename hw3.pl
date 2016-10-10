@@ -80,7 +80,11 @@ nounPhrase([ADJ|NP]) :- adjective([ADJ]), nounPhrase(NP).
 
 verbPhrase(VP) :- pluralVerb(VP).
 verbPhrase(VP) :- singularVerb(VP).
-verbPhrase([VERB|ADV]) :- verb([VERB]), adverb([ADV]).
+verbPhrase([VERB|ADV]) :- verbPhrase(VERB), adverb([ADV]).
 
 properPhrase(NOUN,VERB) :- singularNoun(NOUN), singularVerb(VERB).
 properPhrase(NOUN,VERB) :- pluralNoun(NOUN), pluralVerb(VERB).
+properPhrase(A,NOUN,VERB) :- article(A), nounPhrase(NOUN), verbPhrase(VERB).
+
+sentence(S) :- append(NP, VP, S), properPhrase(NP, VP).
+sentence([A|S]) :- article([A]), append(NP, VP, S), properPhrase(NP, VP), sentence(S).
